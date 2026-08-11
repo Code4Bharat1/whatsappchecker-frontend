@@ -134,7 +134,17 @@ export default function Home() {
       <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none" />
 
-      <main className="max-w-5xl mx-auto px-6 py-12 md:py-20 relative z-10">
+      {/* Top Navbar */}
+      <header className="absolute top-0 left-0 w-full px-4 sm:px-6 md:px-10 py-6 sm:py-8 z-50 flex items-center justify-between">
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+        >
+          <img src="/nexcore-logo.jpeg" alt="Nexcore Logo" className="h-16 sm:h-20 md:h-24 object-contain rounded-lg" />
+        </motion.div>
+      </header>
+
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-32 pb-8 sm:pt-36 sm:pb-12 md:pt-44 md:pb-20 relative z-10">
         <motion.header 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -143,10 +153,10 @@ export default function Home() {
           <div className="inline-flex items-center justify-center p-3 bg-emerald-500/10 rounded-2xl mb-4 border border-emerald-500/20">
             <Smartphone className="w-8 h-8 text-emerald-400" />
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
             WhatsApp Number Checker
           </h1>
-          <p className="text-neutral-400 text-lg md:text-xl max-w-2xl mx-auto">
+          <p className="text-neutral-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto">
             Upload your Excel sheet and filter out numbers that aren't registered on WhatsApp securely and efficiently.
           </p>
         </motion.header>
@@ -157,7 +167,7 @@ export default function Home() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-neutral-900/50 backdrop-blur-xl border border-neutral-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden group"
+            className="bg-neutral-900/50 backdrop-blur-xl border border-neutral-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden group"
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
             
@@ -167,12 +177,12 @@ export default function Home() {
             </h2>
 
             {!status.isReady ? (
-              <div className="flex flex-col items-center justify-center p-8 border-2 border-dashed border-neutral-700 rounded-2xl bg-neutral-950/50">
+              <div className="flex flex-col items-center justify-center p-6 sm:p-8 border-2 border-dashed border-neutral-700 rounded-2xl bg-neutral-950/50">
                 {status.qrCodeData ? (
                   <div className="text-center space-y-4">
                     <p className="text-neutral-300 font-medium">Scan this QR Code with WhatsApp</p>
                     <div className="p-4 bg-white rounded-xl inline-block">
-                      <img src={status.qrCodeData} alt="QR Code" width={256} height={256} className="rounded-lg" />
+                      <img src={status.qrCodeData} alt="QR Code" className="w-full max-w-[256px] h-auto rounded-lg" />
                     </div>
                     <p className="text-sm text-neutral-500 flex items-center gap-2 justify-center mt-4">
                       <Loader2 className="w-4 h-4 animate-spin" /> Waiting for scan...
@@ -227,7 +237,7 @@ export default function Home() {
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center justify-center p-8 border-2 border-emerald-500/20 bg-emerald-500/5 rounded-2xl h-[360px] relative"
+                className="flex flex-col items-center justify-center p-6 sm:p-8 border-2 border-emerald-500/20 bg-emerald-500/5 rounded-2xl min-h-[300px] md:h-[360px] relative"
               >
                 <button 
                   onClick={async () => {
@@ -261,7 +271,7 @@ export default function Home() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-neutral-900/50 backdrop-blur-xl border border-neutral-800 rounded-3xl p-8 shadow-2xl relative group"
+            className="bg-neutral-900/50 backdrop-blur-xl border border-neutral-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative group"
           >
             <h2 className="text-2xl font-semibold mb-6 flex items-center gap-3">
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-neutral-800 text-sm font-bold text-neutral-400">2</span>
@@ -273,7 +283,7 @@ export default function Home() {
                 <div className={`transition-opacity duration-500 ${!status.isReady ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>
                   <div
                     {...getRootProps()}
-                    className={`p-10 border-2 border-dashed rounded-2xl text-center cursor-pointer transition-all duration-200 ${
+                    className={`p-6 sm:p-10 border-2 border-dashed rounded-2xl text-center cursor-pointer transition-all duration-200 ${
                       isDragActive ? "border-emerald-500 bg-emerald-500/5" : "border-neutral-700 hover:border-neutral-500 hover:bg-neutral-800/50"
                     }`}
                   >
@@ -305,7 +315,7 @@ export default function Home() {
                   <button
                     onClick={handleUpload}
                     disabled={!file || uploading || !status.isReady}
-                    className="w-full py-4 px-6 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white rounded-xl font-semibold text-lg transition-all shadow-lg hover:shadow-emerald-500/25 disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2"
+                    className="w-full py-3 sm:py-4 px-4 sm:px-6 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white rounded-xl font-semibold text-base sm:text-lg transition-all shadow-lg hover:shadow-emerald-500/25 disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2"
                   >
                     {uploading ? (
                       <>
